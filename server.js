@@ -24,6 +24,11 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+app.get("/api/", function (req, res) {
+  const date = new Date()
+  res.json({unix: date.getTime(), utc: date.toUTCString()});
+});
+
 app.get("/api/:date", function (req, res) {
   const isDate = /^\d{4}-?\d{1,2}-?\d{1,2}$/.test(req.params.date)
   const date = isDate ? new Date(req.params.date) : new Date(Number(req.params.date))
